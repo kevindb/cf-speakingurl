@@ -1284,4 +1284,20 @@ component displayname="SpeakingURL" {
 	public speakingurl function init () {
 		return this;
 	}
+
+	public string function getSlug (
+		required string input,
+				 struct opts = {}
+	) {
+		local.response = "";
+
+		if (len(arguments.input) == 0) {
+			return local.response;
+		}
+
+		local.symbol = variables.symbolMap.en;
+		local.langChar = variables.langCharMap.en;
+
+		return local.response;
+	}
 }
