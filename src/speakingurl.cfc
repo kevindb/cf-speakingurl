@@ -22,6 +22,19 @@ component displayname="SpeakingURL" {
 	variables.uricChars = [";", "?", ":", "@", "&", "=", "+", "$", ",", "/"];
 	variables.uricNoSlashChars = [";", "?", ":", "@", "&", "=", "+", "$", ","];
 	variables.markChars = [".", "!", "~", "*", "\'", "(", ")"];
+	variables.customReplacements = {};
+
+	variables.defaultOpts = {
+		"maintainCase" = false;
+		"customReplacements" = variables.customReplacements;
+		"truncate" = false;
+		"uricFlag" = false;
+		"uricNoSlashFlag" = false;
+		"markFlag" = false;
+		"convertSymbols" = true;
+		"separator" = variables.separator;
+
+	};
 
 	/**
 	 * charMap
@@ -1294,6 +1307,9 @@ component displayname="SpeakingURL" {
 		if (len(arguments.input) == 0) {
 			return local.response;
 		}
+
+		local.opts = structCopy(variables.defaultOps);
+		structAppend(local.opts, arguments.opts);
 
 		local.symbol = variables.symbolMap.en;
 		local.langChar = variables.langCharMap.en;
