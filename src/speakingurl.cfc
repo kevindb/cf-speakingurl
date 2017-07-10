@@ -1300,6 +1300,9 @@ component displayname="SpeakingURL" {
 		// Initialize empty response
 		local.response = "";
 
+		// Trim leading and trailing whitespace (incl non-breaking-space)
+		arguments.input = arguments.input.reReplaceNoCase("^[\s|\xA0]+|[\s|\xA0]+$", "", "all");
+
 		// Shortcircuit if input is an empty string
 		if (len(arguments.input) == 0) {
 			return local.response;
