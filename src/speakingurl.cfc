@@ -1345,6 +1345,13 @@ component displayname="SpeakingURL" {
 			local.response &= local.ch.reReplaceNoCase("[^\w\s" & variables.allowedChars & "_-]", variables.opts.separator, "all");
 		}
 
+		// Replace whitespace with seperator
+		local.response = local.response.reReplaceNoCase("\s+", variables.opts.separator, "all")
+			// Eliminate duplicate separators
+			.reReplaceNoCase("\" & variables.opts.separator & "+", variables.opts.separator, "all")
+			// Trim separators from start and end
+			.reReplaceNoCase("(^\" & variables.opts.separator & "+|\" & variables.opts.separator & "+$)", "", "all");
+
 		return local.response;
 	}
 }
