@@ -1290,12 +1290,18 @@ component displayname="SpeakingURL" {
 
 
 	public speakingurl function init () {
+		// Merge default and argument options into local.opts
+		variables.opts = structCopy(variables.defaultOpts);
+		structAppend(variables.opts, arguments);
+
+		variables.symbol = variables.symbolMap.en;
+		variables.langChar = variables.langCharMap.en;
+
 		return this;
 	}
 
 	public string function getSlug (
-		required string input,
-				 struct opts = {}
+		required string input
 	) {
 		// Initialize empty response
 		local.response = "";
@@ -1308,12 +1314,7 @@ component displayname="SpeakingURL" {
 			return local.response;
 		}
 
-		// Merge default and argument options into local.opts
-		local.opts = structCopy(variables.defaultOpts);
-		structAppend(local.opts, arguments.opts);
 
-		local.symbol = variables.symbolMap.en;
-		local.langChar = variables.langCharMap.en;
 
 		return local.response;
 	}
