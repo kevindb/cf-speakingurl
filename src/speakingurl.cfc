@@ -1332,10 +1332,18 @@ component displayname="SpeakingURL" {
 
 		// Shortcircuit if input is an empty string
 		if (len(arguments.input) == 0) {
-			return local.response;
+			return "";
 		}
 
+		local.l = arguments.input.len();
 
+		// Loop over each character in the input string
+		for (local.i=1; local.i <= local.l; local.i++) {
+			local.ch = arguments.input.mid(local.i, 1);
+
+			// Replace disallowed char with seperator. Add resulting char to response.
+			local.response &= local.ch.reReplaceNoCase("[^\w\s" & variables.allowedChars & "_-]", variables.opts.separator, "all");
+		}
 
 		return local.response;
 	}
