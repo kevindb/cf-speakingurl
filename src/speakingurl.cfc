@@ -25,15 +25,14 @@ component displayname="SpeakingURL" {
 	variables.customReplacements = {};
 
 	variables.defaultOpts = {
-		"maintainCase" = false;
-		"customReplacements" = variables.customReplacements;
-		"truncate" = false;
-		"uricFlag" = false;
-		"uricNoSlashFlag" = false;
-		"markFlag" = false;
-		"convertSymbols" = true;
-		"separator" = variables.separator;
-
+		"maintainCase" = false,
+		"customReplacements" = variables.customReplacements,
+		"truncate" = false,
+		"uricFlag" = false,
+		"uricNoSlashFlag" = false,
+		"markFlag" = false,
+		"convertSymbols" = true,
+		"separator" = variables.separator
 	};
 
 	/**
@@ -691,8 +690,8 @@ component displayname="SpeakingURL" {
 		// symbols
 		'“': '"',
 		'”': '"',
-		'‘': '\'',
-		'’': '\'',
+		'‘': '\',
+		'’': '\',
 		'∂': 'd',
 		'ƒ': 'f',
 		'™': '(TM)',
@@ -824,11 +823,7 @@ component displayname="SpeakingURL" {
 		'ဉ်': 'in',
 		'ံ': 'an',
 		'ိံ': 'ein',
-		'ုံ': 'on',
-
-		// Dhivehi
-		'ައް': 'ah',
-		'ަށް': 'ah',
+		'ုံ': 'on'
 	};
 
 	/**
@@ -1308,7 +1303,7 @@ component displayname="SpeakingURL" {
 			return local.response;
 		}
 
-		local.opts = structCopy(variables.defaultOps);
+		local.opts = structCopy(variables.defaultOpts);
 		structAppend(local.opts, arguments.opts);
 
 		local.symbol = variables.symbolMap.en;
