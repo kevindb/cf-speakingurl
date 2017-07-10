@@ -1297,6 +1297,27 @@ component displayname="SpeakingURL" {
 		variables.symbol = variables.symbolMap.en;
 		variables.langChar = variables.langCharMap.en;
 
+		variables.allowedChars = "";
+
+		if (variables.opts.uricFlag) {
+			variables.allowedChars &= variables.uricChars;
+		}
+
+		if (variables.opts.uricNoSlashFlag) {
+			variables.allowedChars &= variables.opts.uricNoSlashChars;
+		}
+
+		if (variables.opts.markFlag) {
+			variables.allowedChars &= variables.opts.markChars;
+		}
+
+		// add all custom replacement to allowed charlist
+		for (local.ch in variables.opts.customReplacements) {
+			variables.allowedChars &= local.ch;
+		}
+
+		variables.allowedChars &= variables.opts.separator;
+
 		return this;
 	}
 
