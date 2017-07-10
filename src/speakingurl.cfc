@@ -1297,12 +1297,15 @@ component displayname="SpeakingURL" {
 		required string input,
 				 struct opts = {}
 	) {
+		// Initialize empty response
 		local.response = "";
 
+		// Shortcircuit if input is an empty string
 		if (len(arguments.input) == 0) {
 			return local.response;
 		}
 
+		// Merge default and argument options into local.opts
 		local.opts = structCopy(variables.defaultOpts);
 		structAppend(local.opts, arguments.opts);
 
