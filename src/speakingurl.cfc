@@ -1359,6 +1359,10 @@ component displayname="SpeakingURL" {
 
 		local.response = this.truncate(local.response, variables.opts.maxLength);
 
+		if (!variables.opts.maintainCase && !variables.opts.titleCase) {
+			local.response = local.response.lCase();
+		}
+
 		return local.response;
 	}
 
