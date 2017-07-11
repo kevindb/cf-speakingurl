@@ -25,15 +25,15 @@ component displayname="SpeakingURL" {
 	variables.customReplacements = {};
 
 	variables.defaultOpts = {
-		"maintainCase" = false,
-		"titleCase" = false,
-		"customReplacements" = variables.customReplacements,
-		"maxLength" = 0,
-		"uricFlag" = false,
-		"uricNoSlashFlag" = false,
-		"markFlag" = false,
 		"convertSymbols" = true,
-		"separator" = variables.separator
+		"customReplacements" = variables.customReplacements,
+		"maintainCase" = false,
+		"markFlag" = false,
+		"maxLength" = 0,
+		"separator" = variables.separator,
+		"titleCase" = false,
+		"uricFlag" = false,
+		"uricNoSlashFlag" = false
 	};
 
 	/**
