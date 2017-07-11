@@ -26,6 +26,7 @@ component displayname="SpeakingURL" {
 
 	variables.defaultOpts = {
 		"maintainCase" = false,
+		"titleCase" = false,
 		"customReplacements" = variables.customReplacements,
 		"truncate" = false,
 		"uricFlag" = false,
@@ -1343,6 +1344,10 @@ component displayname="SpeakingURL" {
 
 			// Replace disallowed char with seperator. Add resulting char to response.
 			local.response &= local.ch.reReplaceNoCase("[^\w\s" & variables.allowedChars & "_-]", variables.opts.separator, "all");
+		}
+
+		if (variables.opts.titleCase) {
+			local.response = local.response.reReplace("\b([^\s" & variables.opts.separator & "])([^\s" & variables.opts.separator & "]*)\b", "\u\1\L\2", "all");
 		}
 
 		// Replace whitespace with seperator
