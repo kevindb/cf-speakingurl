@@ -28,7 +28,7 @@ component displayname="SpeakingURL" {
 		"maintainCase" = false,
 		"titleCase" = false,
 		"customReplacements" = variables.customReplacements,
-		"truncate" = false,
+		"maxLength" = 0,
 		"uricFlag" = false,
 		"uricNoSlashFlag" = false,
 		"markFlag" = false,
@@ -1356,6 +1356,27 @@ component displayname="SpeakingURL" {
 			.reReplaceNoCase("\" & variables.opts.separator & "+", variables.opts.separator, "all")
 			// Trim separators from start and end
 			.reReplaceNoCase("(^\" & variables.opts.separator & "+|\" & variables.opts.separator & "+$)", "", "all");
+
+		local.response = this.truncate(local.response, variables.opts.maxLength);
+
+		return local.response;
+	}
+
+	public string function truncate (
+		required string input,
+		required numeric maxLength
+	) {
+		if (arguments.maxLength <= 0) {
+			return arguments.input;
+
+		} else if (arguments.input.len() > arguments.maxLength) {
+			local.response = arguments.input.left(arguments.maxLength);
+
+			// If last character is seperator charater, trim it from the end
+			if (local.response.right(1) == variables.opts.separator) {
+				local.response = local.response.left(local.response.len()-1);
+			}
+		}
 
 		return local.response;
 	}
