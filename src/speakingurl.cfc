@@ -114,7 +114,7 @@ component displayname="SpeakingURL" {
 		required string input,
 		required numeric maxLength
 	) {
-		if (arguments.maxLength <= 0) {
+		if (arguments.maxLength <= 0 || arguments.input.len() <= arguments.maxLength) {
 			return arguments.input;
 
 		} else if (arguments.input.len() > arguments.maxLength) {
